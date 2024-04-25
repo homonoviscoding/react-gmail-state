@@ -1,11 +1,20 @@
 import Header from './components/Header'
 import initialEmails from './data/emails'
+import { useState } from 'react'
 
 import './styles/App.css'
 
 function App() {
   // Use initialEmails for state
-  console.log(initialEmails)
+  const [emailList, setEmailList] = useState([])
+
+  setEmailList(
+    initialEmails
+  )
+  // emailList.push(initialEmails)
+  
+  
+  // console.log(initialEmails)
 
   return (
     <div className="app">
@@ -28,7 +37,7 @@ function App() {
           </li>
 
           <li className="item toggle">
-            <label for="hide-read">Hide read</label>
+            <label htmlFor="hide-read">Hide read</label>
             <input
               id="hide-read"
               type="checkbox"
@@ -38,7 +47,21 @@ function App() {
           </li>
         </ul>
       </nav>
-      <main className="emails">{/* Render a list of emails here */}</main>
+      <main className="emails">{/* Render a list of emails here */}
+        <ul>
+          {initialEmails.map(email => {
+            return (
+              <>
+                <li>{email[0]}</li>
+                {/* <li>{email[1]}</li>
+                <li>{email[2]}</li>
+                <li>{email[3]}</li>
+                <li>{email[4]}</li> */}
+              </>
+            )
+          })}
+        </ul>
+      </main>
     </div>
   )
 }
