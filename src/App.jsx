@@ -6,13 +6,13 @@ import './styles/App.css'
 
 function App() {
   // Use initialEmails for state
-  // const [emailList, setEmailList] = useState([])
+  const [emailList, setEmailList] = useState(initialEmails)
   const [emailData, setEmailData] = useState({
     id: '',
     read: '',
     sender: '',
     starred: '',
-    title: 'sdgfhnsudghguygyu'
+    title: ''
   })
 
   // setEmailList(
@@ -22,11 +22,11 @@ function App() {
   console.log(emailData)
 
 const handleChange = (event) => {
-  const {name, value} = event.target
+  const {name, checked} = event.target
 
   setEmailData({
     ...emailData,
-    [name] : value
+    [name] : checked
   })
 }
   
@@ -63,43 +63,19 @@ const handleChange = (event) => {
           </li>
         </ul>
       </nav>
-      <main className="emails">{/* Render a list of emails here */}
-          {/* {emailList.map(email => {
-            return (
-              <> */}
-                <li className="email">
-                  <div className="select" name="read" onChange={handleChange}><input className="select-checkbox" value={emailData.read} type="checkbox"/></div>
-                  <div className="star" name="starred" onChange={handleChange}><input className="star-checkbox" value={emailData.star} type="checkbox"/></div>
-                  <div className="sender" name="sender" onChange={handleChange}> {emailData.sender} </div>
-                  <div className="title" name="title" onChange={handleChange}> {emailData.title} </div>
-                </li>
-                <li className="email">
-                  <div className="select" name="read" onChange={handleChange}><input className="select-checkbox" type="checkbox"/> {emailData.read} </div>
-                  <div className="star" name="starred" onChange={handleChange}><input className="star-checkbox" type="checkbox"/> {emailData.starred} </div>
-                  <div className="sender" name="sender" onChange={handleChange}> {emailData.sender} </div>
-                  <div className="title" name="title" onChange={handleChange}> {emailData.title} </div>
-                </li>
-                <li className="email">
-                  <div className="select" name="read" onChange={handleChange}><input className="select-checkbox" type="checkbox"/> {emailData.read} </div>
-                  <div className="star" name="starred" onChange={handleChange}><input className="star-checkbox" type="checkbox"/> {emailData.starred} </div>
-                  <div className="sender" name="sender" onChange={handleChange}> {emailData.sender} </div>
-                  <div className="title" name="title" onChange={handleChange}> {emailData.title} </div>
-                </li>
-                <li className="email">
-                  <div className="select" name="read" onChange={handleChange}><input className="select-checkbox" type="checkbox"/> {emailData.read} </div>
-                  <div className="star" name="starred" onChange={handleChange}><input className="star-checkbox" type="checkbox"/> {emailData.starred} </div>
-                  <div className="sender" name="sender" onChange={handleChange}> {emailData.sender} </div>
-                  <div className="title" name="title" onChange={handleChange}> {emailData.title} </div>
-                </li>
-                <li className="email">
-                  <div className="select" name="read" onChange={handleChange}><input className="select-checkbox" type="checkbox"/> {emailData.read} </div>
-                  <div className="star" name="starred" onChange={handleChange}><input className="star-checkbox" type="checkbox"/> {emailData.starred} </div>
-                  <div className="sender" name="sender" onChange={handleChange}> {emailData.sender} </div>
-                  <div className="title" name="title" onChange={handleChange}> {emailData.title} </div>
-                </li>
-              {/* </>
-            )
-          })} */}
+      <main className="emails">
+      {emailList.map(email => {
+        return (
+          <>
+            <li className="email">
+              <div className="select" name="read"><input className="select-checkbox" onChange={handleChange} checked={email.read} type="checkbox"/></div>
+              <div className="star" name="starred"><input className="star-checkbox" onChange={handleChange} checked={email.star} type="checkbox"/></div>
+              <div className="sender" name="sender"> {email.sender} </div>
+              <div className="title" name="title"> {email.title} </div>
+            </li>
+          </>
+        )
+      })}          
       </main>
     </div>
   )
